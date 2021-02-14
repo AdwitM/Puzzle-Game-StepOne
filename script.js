@@ -4,7 +4,7 @@ $(document).ready(function () {
 
     $("#start").on("click", function () {
 
-        emailCheck();
+        startGame();
 
     });
 
@@ -12,37 +12,9 @@ $(document).ready(function () {
 
 
 
-//Email Check
-
-function emailCheck() {
-
-    $(".lbWrapper1,.lbWrapper1 .signupWrapper").show();
-
-    $("input.submit").on("click", function () {
-
-        if ($("input#email").val() == "") {
-
-            $(".error").show();
-
-        } else {
-
-            $(".error").hide();
-
-            $("#start").hide();
-
-            $(".imgChoice").hide();
-
-            startGame();
-
-            $(".lbWrapper1,.lbWrapper1 .signupWrapper").hide();
-
-        }
 
 
 
-    });
-
-}
 
 //Start game
 
@@ -53,9 +25,9 @@ function startGame() {
     window.moves = 0;
 
     var classNameArray = ["sq1", "sq2", "sq3", "sq4", "sq5", "sq6", "sq7", "sq8", "sq9", "sq10", "sq11", "sq12", "sq13", "sq14", "sq15", "sq16"];
-    
+
     var arrayToCompare = [];
-    
+
     // Images in a array
 
     var arr = new Array(14, 2, 10, 6, 12, 13, 9, 7, 15, 8, 5, 11, 4, 1, 3, 16);
@@ -89,12 +61,12 @@ function startGame() {
             jQuery("#image div").each(function () {
                 arrayToCompare.push(jQuery(this).attr("class"));
             });
-            var is_same = (classNameArray.length == arrayToCompare.length) && classNameArray.every(function(element, index) {
-                        return element === arrayToCompare[index]; 
+            var is_same = (classNameArray.length == arrayToCompare.length) && classNameArray.every(function (element, index) {
+                return element === arrayToCompare[index];
             });
             console.log(is_same);
-            if(is_same == true){
-                 gameOver();       
+            if (is_same == true) {
+                gameOver();
             }
         }
     });
@@ -115,23 +87,23 @@ function Shuffle(o) {
 
 function gameOver() {
 
-                var counterVal, timeVal, winTime;
+    var counterVal, timeVal, winTime;
 
-                $(".lbWrapper,.lbWrapper .successWrapper").show();
+    $(".lbWrapper,.lbWrapper .successWrapper").show();
 
-                counterVal = $("#counter span").text();
+    counterVal = $("#counter span").text();
 
-                timeVal = document.getElementById('countdown').innerHTML;
+    timeVal = document.getElementById('countdown').innerHTML;
 
-                winTime = balanceTime(timeVal);
+    winTime = balanceTime(timeVal);
 
-                $(".successMsg").text("You completed the game with " + counterVal + " moves and in " + winTime)
+    $(".successMsg").text("You completed the game with " + counterVal + " moves and in " + winTime)
 
-                $(".tryAgain a").click(function () {
+    $(".tryAgain a").click(function () {
 
-                    location.reload();
+        location.reload();
 
-                });
+    });
 
 }
 
